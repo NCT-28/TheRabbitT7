@@ -10,6 +10,9 @@
 <head>
 </head>
 <body>
+
+<%@include file="/common/blog/slider.jsp" %>
+
 <!--* Blog*-->
 <section id="mt_blog" class="">
     <div class="container">
