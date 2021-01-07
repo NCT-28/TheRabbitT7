@@ -14,13 +14,13 @@ public class HomeController {
 		this.userService = service;
 	}
 	
-	@GetMapping(value = {"/", "/index"})
+	@GetMapping(value = {"/"})
 	public String homePage() {
 		return "index";
 	}
 	@GetMapping(value = "/login")
     public String loginPage(Model model) {
- 
+
         return "login";
     }
 }
