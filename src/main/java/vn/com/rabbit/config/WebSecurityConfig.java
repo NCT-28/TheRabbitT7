@@ -47,10 +47,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// Trang /userInfo yêu cầu phải login với vai trò USER hoặc ADMIN.
 		// Nếu chưa login, nó sẽ redirect tới trang /login.
-		//http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+		http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 
 		// Trang chỉ dành cho ADMIN
-		http.authorizeRequests().antMatchers("/quan-tri/*").access("hasRole('ROLE_ADMIN')");
+		http.authorizeRequests().antMatchers("/quan-tri/*").permitAll();
 
 		// Khi người dùng đã login, với vai trò XX.
 		// Nhưng truy cập vào trang yêu cầu vai trò YY,
@@ -62,10 +62,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 				// Submit URL của trang login
 				.loginProcessingUrl("/logins") // Submit URL
-				.loginPage("/login")//
-				.defaultSuccessUrl("/quan-tri")//
-				.failureUrl("/login?error=true")//
-				.usernameParameter("username")//
+				.loginPage("/login")
+				.defaultSuccessUrl("/quan-tri")
+				.failureUrl("/login?error=true")
+				.usernameParameter("username")
 				.passwordParameter("password")
 
 				// Cấu hình cho Logout Page.

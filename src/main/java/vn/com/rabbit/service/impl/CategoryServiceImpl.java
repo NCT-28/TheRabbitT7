@@ -37,8 +37,8 @@ public class CategoryServiceImpl implements CategoryService {
 		category.setLocked((request.getParameter("id") != null) && Boolean.parseBoolean(request.getParameter("locked")));
 		
 		System.out.println(Boolean.parseBoolean(request.getParameter("locked")));
-		category.setCreatedBy((request.getParameter("id") == null) ? principal.getName() : null);
-		category.setUpdatedBy((request.getParameter("id") != null) ? null : principal.getName());
+		category.setCreatedBy((request.getParameter("id") != null) ? principal.getName() : "Anonymous");
+		category.setUpdatedBy((request.getParameter("id") == null) ? "Anonymous" : principal.getName());
 
 		// save or update category
 		categoryRepository.save(category);

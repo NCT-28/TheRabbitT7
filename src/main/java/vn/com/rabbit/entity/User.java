@@ -44,16 +44,6 @@ public class User extends AbstractEntity implements Serializable {
 	@Column(name = "must_chage", nullable = false)
 	private boolean mustChage = false;
 
-	@Column(name = "activation_key", length = 20)
-	@JsonIgnore
-	private String activationKey;
-
-	@Column(name = "reset_key", length = 20)
-	@JsonIgnore
-	private String resetKey;
-
-	@Column(name = "reset_date")
-	private Instant resetDate = null;
 
 	@Column(name = "url")
 	private String url;

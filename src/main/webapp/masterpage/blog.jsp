@@ -28,14 +28,6 @@
 <link
 	href="${pageContext.request.contextPath}/template/blog/css/style.css"
 	rel="stylesheet" type="text/css">
-<!--Plugin CSS-->
-<link
-	href="${pageContext.request.contextPath}/template/blog/css/plugin.css"
-	rel="stylesheet" type="text/css">
-<!--Font Icons-->
-<link
-	href="${pageContext.request.contextPath}/template/blog/css/font-awesome.css"
-	rel="stylesheet" type="text/css">
 <dec:head />
 </head>
 <body class="home-1">
@@ -115,9 +107,6 @@
 	<!-- Latest jquery -->
 	<script
 		src="${pageContext.request.contextPath}/template/blog/js/jquery-3.2.1.min.js"></script>
-	<!-- Plugin Jquery -->
-	<script
-		src="${pageContext.request.contextPath}/template/blog/js/plugin.js"></script>
 	<!-- custom nav jquery -->
 	<script
 		src="${pageContext.request.contextPath}/template/blog/js/custom-nav.js"></script>

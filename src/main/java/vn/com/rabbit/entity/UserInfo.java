@@ -33,5 +33,5 @@ public class UserInfo extends AbstractEntity implements Serializable {
 	private String comment;
 
 	@Column(name = "mobile")
-	private int mobile;
+	private String mobile;
 }
