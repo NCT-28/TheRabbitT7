@@ -4,16 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title><dec:title /></title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <title>AdminLTE 2 | Dashboard</title>
-<!-- Tell the browser to be responsive to screen width -->
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-	
+
+<link rel="shortcut icon" type="image/x-icon"
+	href="${pageContext.request.contextPath}/template/blog/images/favicon.png">
+
 <script
 	src="${pageContext.request.contextPath}/template/admin/dist/js/jquery.min.js"></script>
 
@@ -42,39 +40,35 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
-
-
+	
 		<%@ include file="/common/admin/header.jsp"%>
 		<%@ include file="/common/admin/menu.jsp"%>
-
-		<!-- Content Wrapper. Contains page content -->
+		
 		<div class="content-wrapper">
-
 			<dec:body />
 		</div>
-		<!-- /.content-wrapper -->
 
 		<%@ include file="/common/admin/footer.jsp"%>
 
 		<%@ include file="/common/admin/control-sidebar.jsp"%>
-		<!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
 
 	</div>
-	<!-- ./wrapper -->
-
-	<!-- jQuery 3 -->
+	
 	<script
 		src="${pageContext.request.contextPath}/template/admin/bower_components/jquery/dist/jquery.min.js"></script>
-	
+
 	<!-- Bootstrap 3.3.7 -->
-	<script src="${pageContext.request.contextPath}/template/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/template/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!-- FastClick -->
-	<script src="${pageContext.request.contextPath}/template/admin/bower_components/fastclick/lib/fastclick.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/template/admin/bower_components/fastclick/lib/fastclick.js"></script>
 	<!-- AdminLTE App -->
-	<script src="${pageContext.request.contextPath}/template/admin/dist/js/adminlte.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/template/admin/dist/js/adminlte.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
-	<script src="${pageContext.request.contextPath}/template/admin/dist/js/demo.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/template/admin/dist/js/demo.js"></script>
 </body>
 </html>

@@ -16,7 +16,12 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 public class RoleUser extends AbstractEntity implements Serializable {
 
-    @ManyToOne
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@ManyToOne
     @JoinColumn(name = "user_id")
     private User users;
 

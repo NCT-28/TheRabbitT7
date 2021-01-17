@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Blog NaoT 97</title>
+<title><dec:title/></title>
 <!-- Favicon -->
 <link rel="shortcut icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/template/blog/images/favicon.png">
@@ -28,6 +28,10 @@
 <link
 	href="${pageContext.request.contextPath}/template/blog/css/style.css"
 	rel="stylesheet" type="text/css">
+<link
+	href="${pageContext.request.contextPath}/template/blog/css/plugin.css"
+	rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/template/blog/css/font-awesome.css" rel="stylesheet" type="text/css">
 <dec:head />
 </head>
 <body class="home-1">
@@ -97,21 +101,17 @@
 	<!-- search popup -->
 	<div id="search">
 		<button type="button" class="close">×</button>
-		<form>
-			<input type="search" value="" placeholder="type keyword(s) here" />
+		<form action="${pageContext.request.contextPath}/search">
+			<input type="search" value="" placeholder="Nhập tìm kiếm tại đây!" />
 			<button type="submit" class="btn btn-primary">Search</button>
 		</form>
 	</div>
-
-	<!--*Scripts*-->
-	<!-- Latest jquery -->
-	<script
-		src="${pageContext.request.contextPath}/template/blog/js/jquery-3.2.1.min.js"></script>
-	<!-- custom nav jquery -->
-	<script
-		src="${pageContext.request.contextPath}/template/blog/js/custom-nav.js"></script>
-	<!-- main default Jquery -->
-	<script
-		src="${pageContext.request.contextPath}/template/blog/js/main.js"></script>
+		
+		
+			<!-- Latest jquery --><script src="${pageContext.request.contextPath}/template/blog/js/jquery-3.2.1.min.js"></script>
+    <!-- Plugin Jquery --><script src="${pageContext.request.contextPath}/template/blog/js/plugin.js"></script>
+    <!-- custom nav jquery --><script src="${pageContext.request.contextPath}/template/blog/js/custom-nav.js"></script>
+    <!-- main default Jquery --><script src="${pageContext.request.contextPath}/template/blog/js/main.js"></script>
+	
 </body>
 </html>

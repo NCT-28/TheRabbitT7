@@ -58,8 +58,7 @@
 			</ul>
 			<!-- /.control-sidebar-menu -->
 
-			<h3 class="control-sidebar-heading">
-				Tiến độ/h3>
+			<h3 class="control-sidebar-heading"> Tiến độ </h3>
 				<ul class="control-sidebar-menu">
 					<li><a href="javascript:void(0)">
 							<h4 class="control-sidebar-subheading">

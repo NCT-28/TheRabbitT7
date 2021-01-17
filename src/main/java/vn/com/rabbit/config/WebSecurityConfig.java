@@ -61,10 +61,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().and().formLogin()//
 
 				// Submit URL của trang login
-				.loginProcessingUrl("/logins") // Submit URL
+				.loginProcessingUrl("/auth/logins") // Submit URL
 				.loginPage("/login")
 				.defaultSuccessUrl("/quan-tri")
-				.failureUrl("/login?error=true")
+				.failureUrl("/auth/login?error=true")
 				.usernameParameter("username")
 				.passwordParameter("password")
 

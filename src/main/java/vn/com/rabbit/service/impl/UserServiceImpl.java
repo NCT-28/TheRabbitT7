@@ -1,19 +1,19 @@
 package vn.com.rabbit.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.PasswordEncoder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import vn.com.rabbit.entity.User;
-import vn.com.rabbit.entity.UserInfo;
-import vn.com.rabbit.repository.UserRepository;
-import vn.com.rabbit.service.UserService;
-
 import java.security.Principal;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import vn.com.rabbit.entity.User;
+import vn.com.rabbit.entity.UserInfo;
+import vn.com.rabbit.repository.UserRepository;
+import vn.com.rabbit.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {

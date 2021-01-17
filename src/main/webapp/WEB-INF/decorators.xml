@@ -7,4 +7,8 @@
 	<decorator name="quanTri" page="admin.jsp">
 		<pattern>/quan-tri*</pattern>
 	</decorator>
+	
+	<decorator name="auth" page="auth.jsp">
+		<pattern>/auth*</pattern>
+	</decorator>
 </decorators>

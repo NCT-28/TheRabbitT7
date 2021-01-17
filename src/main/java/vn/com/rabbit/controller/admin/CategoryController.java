@@ -30,8 +30,7 @@ public class CategoryController {
 			@RequestParam(defaultValue = "name") String sortBy,
 			HttpSession session) {
 		CategoryMess categoryMess = categoryService.getAllCategorys(pageNo, pageSize, name, sortType, sortBy);
-		model.addAttribute("categoryMess", categoryMess);
-		
+		model.addAttribute("categoryMess", categoryMess);	
 		return "admin/category";
 	}
 

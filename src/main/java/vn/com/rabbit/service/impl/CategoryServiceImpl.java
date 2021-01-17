@@ -16,9 +16,9 @@ import vn.com.rabbit.service.mess.CategoryMess;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.UUID;
 
 @Service
-
 public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired
@@ -69,12 +69,14 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	@Transactional
 	public Category getOneCategoryById(HttpServletRequest request) {
-		return categoryRepository.findOneCategoryById(Long.parseLong(request.getParameter("id")));
+		UUID id = UUID.fromString(request.getParameter("id"));
+		return categoryRepository.findOneCategoryById(id);
 	}
 	@Override
 	@Transactional
 	public void deleteCategory(HttpServletRequest request) {
-		categoryRepository.deleteById(Long.parseLong(request.getParameter("id")));
+		UUID id = UUID.fromString(request.getParameter("id"));
+		categoryRepository.deleteById(id);
 	}
 
 }

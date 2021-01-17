@@ -17,23 +17,41 @@ import vn.com.rabbit.service.UserService;
 public class HomeController {
 
 	private final UserService userService;
-	
+
 	public HomeController(UserService service) {
 		this.userService = service;
 	}
-	
-	@GetMapping(value = {""})
+
+	@GetMapping(value = { "" })
 	public String homePage() {
 		return "index";
 	}
-	@GetMapping(value = "login")
-    public String loginPage(Model model) {
 
-        return "login";
-    }
+	@GetMapping(value = "auth/login")
+	public String loginPage(Model model) {
+		return "login";
+	}
+
+	@GetMapping(value = "auth/register")
+	public String registerPage(Model model) {
+		return "register";
+	}
+
+	@GetMapping(value = "auth/forget")
+	public String forgetPage(Model model) {
+		return "forget";
+	}
+
+	@GetMapping(value = "/403")
+	public String accessDenied(Model model, Principal principal) {
+		if (principal == null)
+			return "403";
+		return "";
+	}
+
 	@PostMapping(value = "register")
-    public String register (HttpServletRequest request,  Principal principal) {
+	public String register(HttpServletRequest request, Principal principal) {
 		userService.saveAndUpdate(request, principal);
-        return "redirect:" + request.getHeader("Referer");
-    }
+		return "redirect:" + request.getHeader("Referer");
+	}
 }

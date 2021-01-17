@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <header class="main-header">
-
 	<!-- Logo -->
-	<a href="index2.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
-		<span class="logo-mini"><b>O</b>AE</span> <!-- logo for regular state and mobile devices -->
-		<span class="logo-lg"><b>Oriex</b>AcE</span>
+	<a href="${pageContext.request.contextPath}/" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+		<span class="logo-mini"><b>T</b>RB</span> <!-- logo for regular state and mobile devices -->
+		<span class="logo-lg"><b>The</b>Rabbit ADm</span>
 	</a>
 
 	<!-- Header Navbar: style can be found in header.less -->

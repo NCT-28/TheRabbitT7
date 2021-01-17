@@ -14,12 +14,12 @@
         <div class="container">
 
             <div class="logo pull-left">
-                <h1><a href="index.html"><img src="${pageContext.request.contextPath}/template/blog/images/logo.png"></a></h1>
+                <h1><a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/template/blog/images/logo.png"></a></h1>
             </div>
 
             <div id="navbar" class="navbar-nav-wrapper text-center">
                 <ul class="nav navbar-nav navbar-right" id="responsive-menu">
-                    <li class="active"><a href="#">Home</a>
+                    <li class="active"><a href="${pageContext.request.contextPath}/">Home</a>
                     </li>
 
                     <li><a href="#">Pages <i class="fa fa-angle-down"></i></a>
@@ -74,7 +74,8 @@
 
                         </ul>
                     </li>
-                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="${pageContext.request.contextPath}/#">Contact Us</a></li>
+                    <li><a href="${pageContext.request.contextPath}/auth/login">Login</a></li>
                     <li><a href="#search" class="mt_search"><i class="fa fa-search"></i></a></li>
                 </ul>
             </div><!--/.nav-collapse -->
