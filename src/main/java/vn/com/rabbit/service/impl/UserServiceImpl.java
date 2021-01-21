@@ -15,7 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import vn.com.rabbit.entity.Category;
 import vn.com.rabbit.entity.User;
 import vn.com.rabbit.entity.UserInfo;
 import vn.com.rabbit.repository.UserRepository;
