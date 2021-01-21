@@ -4,6 +4,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -27,6 +30,7 @@ public class Category extends AbstractEntity implements Serializable {
 	private boolean locked;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categorys", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<CategoryPost> categoryPosts;
 
 }

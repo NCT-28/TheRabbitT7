@@ -1,14 +1,22 @@
 package vn.com.rabbit.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.BatchSize;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.time.Instant;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "bl_user")
@@ -17,7 +25,6 @@ import java.util.List;
 public class User extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 
 	@Column(length = 50, unique = true, nullable = false)
 	private String login;
@@ -38,19 +45,15 @@ public class User extends AbstractEntity implements Serializable {
 	@Column(name = "locked", nullable = false)
 	private boolean locked = false;
 
-	@Column(name = "can_change", nullable = false)
-	private boolean canChange = false;
-
-	@Column(name = "must_chage", nullable = false)
-	private boolean mustChage = false;
-
 
 	@Column(name = "url")
 	private String url;
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users", cascade = CascadeType.ALL)
 	private List<RoleUser> roleUsers;
 
+	@JsonIgnore
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@BatchSize(size = 1)
 	private UserInfo userInfo;

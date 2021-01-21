@@ -15,7 +15,12 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 public class CategoryPost extends AbstractEntity implements Serializable {
 
-    @ManyToOne
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@ManyToOne
     @JoinColumn(name = "category_id")
     private Category categorys;
 

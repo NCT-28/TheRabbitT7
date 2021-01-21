@@ -1,5 +1,10 @@
 package vn.com.rabbit.config;
 
+import java.util.Properties;
+
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,16 +21,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import vn.com.rabbit.service.UserService;
-import vn.com.rabbit.service.impl.UserServiceImpl;
-
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-import java.util.Properties;
-
 @Configuration
 @ComponentScan("vn.com.rabbit.*")
-
 @EnableTransactionManagement
 @PropertySource({ "classpath:database.properties" })
 @EnableJpaRepositories(basePackages = "vn.com.rabbit.repository")

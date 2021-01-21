@@ -16,10 +16,6 @@ public class HomeController {
 		return "admin/index";
 	}
 	
-	@GetMapping(value = { "/quan-tri/tai-khoan" })
-	public String taiKhoanPage(Model model, Principal principal) {
-		return "admin/tk_taikhoan";
-	}
 	@GetMapping(value = { "/quan-tri/tai-khoan/role" })
 	public String taiKhoan_RolePage(Model model, Principal principal) {
 		return "admin/tk_role";

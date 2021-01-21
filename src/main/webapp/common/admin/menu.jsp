@@ -33,7 +33,7 @@
 		<!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">Menu chính</li>
-			<li class="active"><a
+			<li class="${active}"><a
 				href="${pageContext.request.contextPath}/quan-tri"> <i
 					class="fa fa-dashboard"></i> <span>Dashboard</span> <span
 					class="pull-right-container"> </span>
@@ -43,26 +43,26 @@
 						class="label label-primary pull-right">4</span>
 				</span>
 			</a></li>
-			<li><a
+			<li class="${activeCategory}"><a
 				href="${pageContext.request.contextPath}/quan-tri/category"> <i
 					class="fa fa-table"></i> <span>Category</span> <span
 					class="pull-right-container"> <small
 						class="label pull-right bg-blue">17</small>
 				</span>
 			</a></li>
-			<li><a href="${pageContext.request.contextPath}/quan-tri/post">
+			<li class="${activePost}"><a href="${pageContext.request.contextPath}/quan-tri/post">
 					<i class="fa  fa-pencil-square-o"></i> <span>Post</span> <span
 					class="pull-right-container"> <small
 						class="label pull-right bg-blue">90</small>
 				</span>
 			</a></li>
-			<li><a href="${pageContext.request.contextPath}/quan-tri/tag">
+			<li class="${activeTag}"><a href="${pageContext.request.contextPath}/quan-tri/tag">
 					<i class="fa fa-tags"></i> <span>Tags</span> <span
 					class="pull-right-container"> <small
 						class="label pull-right bg-blue">7</small>
 				</span>
 			</a></li>
-			<li class="treeview"><a
+			<li class="treeview ${active_menu}"><a
 				href="#"> <i
 					class="fa fa-users"></i> <span>Tài Khoản</span> <span
 					class="pull-right-container"> <i
@@ -70,7 +70,7 @@
 				</span>
 			</a>
 				<ul class="treeview-menu">
-					<li><a
+					<li class="${activeUser}"><a
 						href="${pageContext.request.contextPath}/quan-tri/tai-khoan"><i
 							class="fa fa-circle-o"></i>User </a></li>
 					<li><a

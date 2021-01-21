@@ -34,32 +34,25 @@
 			<li class="active">Category</li>
 		</ol>
 	</section>
-
-
 	<!-- Main content -->
 	<section class="content">
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="box box-default">
 					<div class="box-body">
-						
+					${sessionScope.delete}
+						<c:if test="${not empty sessionScope.delete}">
 							<div class="alert alert-danger alert-dismissible">
 								<button type="button" class="close" data-dismiss="alert"
 									aria-hidden="true">&times;</button>
 								<h4>
 									<i class="fa fa-close"></i> Xóa thành công :
 								</h4>
-								 ${tenTheloai}
+								${sessionScope.delete}
 							</div>
-						
-					</div>
-					
-
-
-					<div class="box-body">
+						</c:if>
 						<button type="button" class="btn btn-primary" data-toggle="modal"
 							data-target="#themTheLoaiMoi">Thêm Category</button>
-
 					</div>
 				</div>
 			</div>
@@ -159,19 +152,20 @@
 								</th>
 								<th>STT</th>
 								<th>Tên Thể Loại</th>
+								<th>URL</th>
 								<th>Số lượng bài viết</th>
 								<th>Trạng Thái</th>
 								<th></th>
 							</tr>
-							<c:set var="cate" value="${categoryMess}" />
-							<c:forEach items="${cate.listCategorys}" var="us"
-								varStatus="status">
+							<c:set var="cate" value="${categoryModel}" />
+							<c:forEach items="${cate.value}" var="us" varStatus="status">
 								<tr>
 									<td style="width: 5%; text-align: center;"><input
 										class="checkbox all" type="checkbox" name="check[]"
 										id="${us.id }"></td>
 									<td>${status.index + 1}</td>
 									<td>${us.name}</td>
+									<td>/${us.url}</td>
 									<td>
 										<%-- <c:forEach
 												items="${slTruyen}" var="sl">
@@ -181,9 +175,9 @@
 											</c:forEach> --%>
 									</td>
 									<td><c:if test="${us.locked == true}">
-											<span class="label label-success">Enable</span>
-										</c:if> <c:if test="${us.locked == false}">
 											<span class="label label-warning">Disable</span>
+										</c:if> <c:if test="${us.locked == false}">
+											<span class="label label-success">Enable</span>
 										</c:if></td>
 									<td style="width: 15%; padding-top: 1%;"><a
 										class="btn btn-primary btn-sm" title="Tất cả Truyện"
@@ -201,12 +195,11 @@
 							</c:forEach>
 						</table>
 						<div class="grid_3 grid_5 agileits">
-							<c:if test="${cate.totalCategorys/5 >= 1}">
+							<c:if test="${cate.count/5 >= 1}">
 								<div class="col-md-6">
 									<nav>
 										<ul class="pagination pagination-lg">
-											<c:forEach begin="0" end="${cate.totalCategorys/15}"
-												var="index">
+											<c:forEach begin="0" end="${cate.count/15}" var="index">
 												<li><a href="category?pageNo=${index +1}"
 													class="nav-item">${index +1}</a></li>
 											</c:forEach>
@@ -291,9 +284,9 @@
 							<div class="col-lg-12">
 								<form
 									action="${pageContext.request.contextPath}/quan-tri/category/xoa-the-loai"
-									method="post">
+									method="POST">
 									<div class="form-group">
-										<label>Bạn có chắc muốn xóa bỏ thể loại truyện: </label>
+										<label>Bạn có chắc muốn xóa bỏ thể loại: </label>
 										<h4 id="name"></h4>
 									</div>
 									<!-- background: transparent; -->

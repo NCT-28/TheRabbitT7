@@ -12,10 +12,11 @@ import vn.com.rabbit.common.Helper;
 import vn.com.rabbit.entity.Category;
 import vn.com.rabbit.repository.CategoryReposytory;
 import vn.com.rabbit.service.CategoryService;
-import vn.com.rabbit.service.mess.CategoryMess;
+import vn.com.rabbit.service.model.ModelBase;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -27,26 +28,36 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	@Transactional
 	public void saveAndUpdate(HttpServletRequest request, Principal principal) {
-		Category category = new Category();
-		
-		//category.setId(request.getParameter("id"));
-		
-		category.setName(request.getParameter("name"));
-		category.setUrl(Helper.pathVariableString(request.getParameter("name")));
-		category.setDescription(request.getParameter("description"));
-		category.setLocked((request.getParameter("id") != null) && Boolean.parseBoolean(request.getParameter("locked")));
-		
-		System.out.println(Boolean.parseBoolean(request.getParameter("locked")));
-		category.setCreatedBy((request.getParameter("id") != null) ? principal.getName() : "Anonymous");
-		category.setUpdatedBy((request.getParameter("id") == null) ? "Anonymous" : principal.getName());
 
-		// save or update category
+		String name = request.getParameter("name");
+		String description = request.getParameter("description");
+		// Boolean lock = Boolean.parseBoolean(request.getParameter("locked"));
+
+		Category category = new Category();
+
+		if (request.getParameter("id") == null) {
+			category.setName(name);
+			category.setUrl(Helper.pathVariableString(name));
+			category.setDescription(description);
+			category.setLocked(false);
+			category.setCreatedBy(/* principal.getName() != null ? principal.getName() : */ "Anonymous");
+		} else {
+			UUID id = UUID.fromString(request.getParameter("id"));
+			category = categoryRepository.findById(id).get();
+			category.setName(name);
+			category.setUrl(Helper.pathVariableString(name));
+			category.setDescription(description);
+			category.setUpdatedBy(/* principal.getName() != null ? principal.getName() : */"Anonymous");
+		}
+
 		categoryRepository.save(category);
 
 	}
+
 	@Override
 	@Transactional
-	public CategoryMess getAllCategorys(Integer pageNo, Integer pageSize, String name, String sortType, String sortBy) {
+	public ModelBase<Category> getAllCategorys(Integer pageNo, Integer pageSize, String name, String sortType,
+			String sortBy) {
 
 		Pageable pageable = null;
 
@@ -57,21 +68,22 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 		Page<Category> enties = categoryRepository.findAllCategory(pageable, name);
 
-		CategoryMess categoryMess = new CategoryMess();
+		ModelBase<Category> categoryMess = new ModelBase<Category>();
 		categoryMess.setMessage("");
-		categoryMess.setTotalCategorys(enties.getTotalElements());
-		categoryMess.setListCategorys(enties.getContent());
+		categoryMess.setCount(enties.getTotalElements());
+		categoryMess.setValue(enties.getContent());
 
 		return categoryMess;
-		
+
 	}
 
 	@Override
 	@Transactional
-	public Category getOneCategoryById(HttpServletRequest request) {
+	public Optional<Category> getOneCategoryById(HttpServletRequest request) {
 		UUID id = UUID.fromString(request.getParameter("id"));
-		return categoryRepository.findOneCategoryById(id);
+		return categoryRepository.findById(id);
 	}
+
 	@Override
 	@Transactional
 	public void deleteCategory(HttpServletRequest request) {
