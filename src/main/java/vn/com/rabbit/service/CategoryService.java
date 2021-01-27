@@ -1,20 +1,31 @@
 package vn.com.rabbit.service;
 
 
-import vn.com.rabbit.entity.Category;
-import vn.com.rabbit.service.model.ModelBase;
+import java.util.Optional;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
-import java.util.Optional;
 
-public interface CategoryService {
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import vn.com.rabbit.base.service.BaseImplService;
+import vn.com.rabbit.entity.Category;
+import vn.com.rabbit.repository.CategoryReposytory;
+
+@Service
+public class CategoryService extends BaseImplService<Category> {
 	
-	void saveAndUpdate(HttpServletRequest request, Principal principal);
+	private final CategoryReposytory categoryReposytory;
+	protected CategoryService(CategoryReposytory repo) {
+		super(repo);
+		this.categoryReposytory=  repo;
+	}
 	
-	ModelBase<Category> getAllCategorys(Integer pageNo, Integer pageSize, String name, String sortType, String sortBy);
+	@Transactional
+	public Optional<Category> getOneCategoryById(HttpServletRequest request) {
+		UUID id = UUID.fromString(request.getParameter("id"));
+		return categoryReposytory.findById(id);
+	}
 	
-	Optional<Category> getOneCategoryById(HttpServletRequest request);
-	
-	void deleteCategory(HttpServletRequest request);
 }

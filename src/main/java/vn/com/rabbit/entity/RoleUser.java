@@ -1,20 +1,20 @@
 package vn.com.rabbit.entity;
 
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.io.Serializable;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import vn.com.rabbit.base.entity.BaseEntity;
 
 @Data
 @Entity
 @Table(name = "bl_user_role")
 @EqualsAndHashCode(callSuper = false)
-public class RoleUser extends AbstractEntity implements Serializable {
+public class RoleUser extends BaseEntity {
 
     /**
 	 * 

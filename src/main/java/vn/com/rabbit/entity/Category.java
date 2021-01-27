@@ -1,20 +1,25 @@
 package vn.com.rabbit.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.io.Serializable;
-import java.util.List;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import vn.com.rabbit.base.entity.BaseEntity;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "bl_category")
-public class Category extends AbstractEntity implements Serializable {
+public class Category extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "name")

@@ -25,7 +25,7 @@ public class CategoryDTO {
 	}
 	
 	public CategoryDTO(Category category) {
-		this.id=category.getId();
+		this.id=category.getUuid();
 		this.name=category.getName();
 		this.url=category.getUrl();
 		this.locked=category.isLocked();

@@ -1,13 +1,18 @@
 package vn.com.rabbit.repository;
 
-import java.util.UUID;
+import javax.persistence.EntityManager;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import vn.com.rabbit.base.repository.BaseImplRepository;
 import vn.com.rabbit.entity.SettingGroup;
 
 @Repository
-public interface SettingGroupRepository extends JpaRepository<SettingGroup,UUID> {
+public class SettingGroupRepository extends BaseImplRepository<SettingGroup>{
+
+	protected SettingGroupRepository(EntityManager e) {
+		super(SettingGroup.class, e);
+		// TODO Auto-generated constructor stub
+	}
 
 }

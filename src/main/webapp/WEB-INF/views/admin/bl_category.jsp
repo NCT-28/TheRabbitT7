@@ -231,7 +231,7 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<form
-									action="${pageContext.request.contextPath}/quan-tri/category/add-update-category"
+									action="${pageContext.request.contextPath}/quan-tri/category/add"
 									method="post">
 									<div class="form-group">
 										<label>ID thể loại:</label> <input class="form-control"

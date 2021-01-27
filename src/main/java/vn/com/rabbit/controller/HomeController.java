@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import vn.com.rabbit.entity.User;
 import vn.com.rabbit.service.UserService;
 
 @Controller
@@ -51,7 +52,10 @@ public class HomeController {
 
 	@PostMapping(value = "register")
 	public String register(HttpServletRequest request, Principal principal) {
-		userService.saveAndUpdate(request, principal);
+		
+		User user = new User();
+		
+		userService.save(user);
 		return "redirect:" + request.getHeader("Referer");
 	}
 }

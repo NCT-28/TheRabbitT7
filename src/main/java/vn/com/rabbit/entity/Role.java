@@ -1,11 +1,17 @@
 package vn.com.rabbit.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
+import vn.com.rabbit.base.entity.BaseEntity;
 
 /**
  * An authority (a security role) used by Spring Security.
@@ -14,7 +20,7 @@ import java.util.List;
 @Table(name = "bl_role")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Role extends AbstractEntity implements Serializable {
+public class Role extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 

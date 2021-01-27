@@ -73,7 +73,7 @@
 					<li class="${activeUser}"><a
 						href="${pageContext.request.contextPath}/quan-tri/tai-khoan"><i
 							class="fa fa-circle-o"></i>User </a></li>
-					<li><a
+					<li class="${activeRole}"><a
 						href="${pageContext.request.contextPath}/quan-tri/tai-khoan/role"><i
 							class="fa fa-circle-o"></i>Roles</a></li>
 					<li><a

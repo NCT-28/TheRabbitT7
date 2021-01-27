@@ -1,19 +1,19 @@
 package vn.com.rabbit.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.io.Serializable;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import vn.com.rabbit.base.entity.BaseEntity;
 
 @Data
 @Entity
 @Table(name = "bl_tag_post")
 @EqualsAndHashCode(callSuper = false)
-public class TagPost extends AbstractEntity implements Serializable {
+public class TagPost extends BaseEntity {
 
     /**
 	 * 

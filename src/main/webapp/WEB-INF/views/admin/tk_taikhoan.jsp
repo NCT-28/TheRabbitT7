@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Quản trị - Category</title>
+<title>Quản trị - Tài Khoản</title>
 <style>
 .example-modal .modal {
 	position: relative;
@@ -53,7 +53,7 @@
 							</div>
 						</c:if>
 						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#add-form">Thêm Category</button>
+							data-target="#add-form">Thêm Mới</button>
 					</div>
 
 					<%
@@ -82,7 +82,7 @@
 									method="post">
 									<div class="form-group">
 										<label>Tên tài khoản</label> <input class="form-control"
-											name="login" placeholder="Tên tài khoản">
+											name="userName" placeholder="Tên tài khoản">
 									</div>
 									<div class="form-group">
 										<label>Họ Tên</label> <input class="form-control"
@@ -112,7 +112,7 @@
 									<div class="form-group">
 										<label>Quyền</label> <select class="form-control select2"
 											multiple="multiple" data-placeholder="Select a State"
-											style="width: 100%;">
+											style="width: 100%;" name = "roles">
 											<option>Alabama</option>
 											<option>Alaska</option>
 											<option>California</option>
@@ -122,7 +122,7 @@
 											<option>Washington</option>
 										</select>
 									</div>
-									<button type="submit" class="btn btn-primary">Thêm</button>
+									<button type="submit" class="btn btn-primary">Đồng ý</button>
 								</form>
 							</div>
 						</div>

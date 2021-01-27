@@ -1,19 +1,37 @@
 package vn.com.rabbit.service;
 
-import java.security.Principal;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import vn.com.rabbit.base.service.BaseImplService;
 import vn.com.rabbit.entity.User;
-import vn.com.rabbit.service.model.ModelBase;
+import vn.com.rabbit.repository.UserRepository;
 
-public interface UserService {
+@Service
+public class UserService extends BaseImplService<User> {
 
-	void saveAndUpdate(HttpServletRequest request, Principal principal);
+	private final UserRepository userRepository;
 
-	ModelBase<User> getAllUser(Integer pageNo, Integer pageSize, String name, String sortType, String sortBy);
-	
-	Optional<User> getUserWithAuthoritiesByLogin(String login);
+	protected UserService(UserRepository repo) {
+		super(repo);
+		this.userRepository = repo;
+		// TODO Auto-generated constructor stub
+	}
+
+	@Transactional
+	public User save(User model) {
+
+		User user = new User();
+		// Save user.
+		return userRepository.save(user);
+
+	}
+
+	@Transactional(readOnly = true)
+	public Optional<User> getUserWithAuthoritiesByLogin(String login) {
+		return Optional.of(userRepository.findByName("login", login));
+	}
 
 }

@@ -1,6 +1,5 @@
 package vn.com.rabbit.entity;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,12 +16,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import vn.com.rabbit.base.entity.BaseEntity;
 
 @Entity
 @Table(name = "bl_user")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class User extends AbstractEntity implements Serializable {
+public class User extends BaseEntity{
 
 	private static final long serialVersionUID = 1L;
 

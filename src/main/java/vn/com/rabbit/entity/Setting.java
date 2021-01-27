@@ -1,6 +1,5 @@
 package vn.com.rabbit.entity;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,12 +11,13 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import vn.com.rabbit.base.entity.BaseEntity;
 
 @Data
 @Entity
 @Table(name = "sys_setting")
 @EqualsAndHashCode(callSuper = false)
-public class Setting extends AbstractEntity implements Serializable {
+public class Setting extends BaseEntity {
 	/**
 	* 
 	*/

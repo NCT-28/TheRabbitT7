@@ -1,16 +1,20 @@
 package vn.com.rabbit.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import javax.persistence.*;
-import java.io.Serializable;
+import vn.com.rabbit.base.entity.BaseEntity;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "bl_comment")
-public class Comment extends AbstractEntity implements Serializable {
+public class Comment extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
