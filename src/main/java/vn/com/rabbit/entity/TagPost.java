@@ -7,11 +7,15 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import vn.com.rabbit.base.entity.BaseEntity;
+import vn.com.rabbit.base.models.annotation.ReportTableName;
 
 @Data
 @Entity
-@Table(name = "bl_tag_post")
+@NoArgsConstructor
+@Table
+@ReportTableName(value = "TagPost", name = "TagPost")
 @EqualsAndHashCode(callSuper = false)
 public class TagPost extends BaseEntity {
 

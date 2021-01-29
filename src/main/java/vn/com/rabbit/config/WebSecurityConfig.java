@@ -9,19 +9,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
-import vn.com.rabbit.authentication.MyUserDetailsService;
+
 
 @Configuration
 @EnableWebSecurity
 @Transactional
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private MyUserDetailsService myUserDetailsService;
+//	@Autowired
+//	private MyUserDetailsService myUserDetailsService;
 
-	public WebSecurityConfig(MyUserDetailsService myUser){
-		this.myUserDetailsService = myUser;
-	}
-	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -33,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// Sét đặt dịch vụ để tìm kiếm User trong Database.
 		// Và sét đặt PasswordEncoder.
-		auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
+	//	auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
 
 	}
 

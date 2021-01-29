@@ -4,24 +4,24 @@ import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import vn.com.rabbit.entity.User;
-import vn.com.rabbit.service.UserService;
+import vn.com.rabbit.entity.Account;
 
 @Controller
 @RequestMapping(value = "/")
 public class HomeController {
 
-	private final UserService userService;
+//	@Autowired
+//	private AccountService userService;
 
-	public HomeController(UserService service) {
-		this.userService = service;
-	}
+	//@Autowired 
+	
 
 	@GetMapping(value = { "" })
 	public String homePage() {
@@ -53,9 +53,9 @@ public class HomeController {
 	@PostMapping(value = "register")
 	public String register(HttpServletRequest request, Principal principal) {
 		
-		User user = new User();
+		Account user = new Account();
 		
-		userService.save(user);
+		//userService.save(user);
 		return "redirect:" + request.getHeader("Referer");
 	}
 }

@@ -13,12 +13,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import vn.com.rabbit.base.entity.BaseEntity;
+import vn.com.rabbit.base.models.annotation.ReportTableName;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "bl_category")
+@Table
+@ReportTableName(value = "Category", name = "kmkdescription")
+@NoArgsConstructor
 public class Category extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 

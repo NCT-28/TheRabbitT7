@@ -1,24 +1,26 @@
 package vn.com.rabbit.controller.admin;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import vn.com.rabbit.base.controller.BaseCrudImplController;
-import vn.com.rabbit.base.jpa.JpaService;
-import vn.com.rabbit.common.Helper;
-import vn.com.rabbit.entity.Category;
-import vn.com.rabbit.service.CategoryService;
-import vn.com.rabbit.service.model.ModelBase;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.Optional;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import vn.com.rabbit.base.controller.BaseCrudImplController;
+import vn.com.rabbit.common.Helper;
+import vn.com.rabbit.entity.Category;
+import vn.com.rabbit.service.CategoryService;
 
 @Controller
 @RequestMapping(value = "/quan-tri/category")
@@ -31,8 +33,6 @@ public class CategoryController extends BaseCrudImplController<Category> {
 		super(service);
 		this.categoryService = service;
 	}
-
-	
 
 	@PostMapping(value = "/add-update-category")
 	public String saveAndUpdate(HttpServletRequest request, Principal principal) {

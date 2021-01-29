@@ -16,13 +16,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import vn.com.rabbit.base.entity.BaseEntity;
+import vn.com.rabbit.base.models.annotation.ReportTableName;
 
 @Entity
-@Table(name = "bl_user")
+@Table
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class User extends BaseEntity{
+@ReportTableName(value = "Account", name = "Account")
+public class Account extends BaseEntity{
 
 	private static final long serialVersionUID = 1L;
 
@@ -50,12 +54,12 @@ public class User extends BaseEntity{
 	private String url;
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users", cascade = CascadeType.ALL)
-	private List<RoleUser> roleUsers;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "accounts", cascade = CascadeType.ALL)
+	private List<RoleAccount> roleAccount;
 
 	@JsonIgnore
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@BatchSize(size = 1)
-	private UserInfo userInfo;
+	private AccountInfo accountInfo;
 
 }

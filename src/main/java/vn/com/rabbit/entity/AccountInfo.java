@@ -9,18 +9,22 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import vn.com.rabbit.base.entity.BaseEntity;
+import vn.com.rabbit.base.models.annotation.ReportTableName;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "bl_user_info")
-public class UserInfo extends BaseEntity {
+@Table
+@NoArgsConstructor
+@ReportTableName(value = "AccountInfo", name = "AccountInfo")
+public class AccountInfo extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private Account account;
 
 	@Column(name = "full_name")
 	private String fullName;

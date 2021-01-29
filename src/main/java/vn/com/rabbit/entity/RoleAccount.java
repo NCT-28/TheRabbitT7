@@ -8,13 +8,17 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import vn.com.rabbit.base.entity.BaseEntity;
+import vn.com.rabbit.base.models.annotation.ReportTableName;
 
 @Data
 @Entity
-@Table(name = "bl_user_role")
+@Table
+@ReportTableName(value = "RoleAccount", name = "RoleAccount")
 @EqualsAndHashCode(callSuper = false)
-public class RoleUser extends BaseEntity {
+@NoArgsConstructor
+public class RoleAccount extends BaseEntity {
 
     /**
 	 * 
@@ -22,8 +26,8 @@ public class RoleUser extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-    @JoinColumn(name = "user_id")
-    private User users;
+    @JoinColumn(name = "account_id")
+    private Account accounts;
 
     @ManyToOne
     @JoinColumn(name = "role_id")

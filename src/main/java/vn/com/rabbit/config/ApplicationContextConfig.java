@@ -5,6 +5,7 @@ import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,9 +15,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -57,33 +58,40 @@ public class ApplicationContextConfig {
 	@Autowired
     private Environment env;
 
-    public ApplicationContextConfig() {
-        super();
+
+    @Autowired
+    @Bean(name = "sessionFactory")
+    public SessionFactory getSessionFactory(DataSource dataSource) throws Exception {
+        System.out.println("## getSessionFactory .... ");
+        try {
+            Properties properties = new Properties();
+
+            // Xem: ds-hibernate-cfg.properties
+            properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+            properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+           // properties.put("current_session_context_class", env.getProperty("current_session_context_class"));
+            properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+            
+            LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
+
+            // Package contain entity classes
+            // Package chứa các entity class.
+            factoryBean.setPackagesToScan(new String[] { "vn.com.rabbit.entity" });
+            factoryBean.setDataSource(dataSource);
+            factoryBean.setHibernateProperties(properties);
+            factoryBean.afterPropertiesSet();
+            //
+            SessionFactory sf = factoryBean.getObject();
+            System.out.println("## getSessionFactory: " + sf);
+            return sf;
+        } catch (Exception e) {
+            System.out.println("Error getSessionFactory: " + e);
+            e.printStackTrace();
+            throw e;
+        }
     }
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan("vn.com.rabbit.entity");
 
-        final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
-        entityManagerFactoryBean.setJpaProperties(additionalProperties());
-
-        return entityManagerFactoryBean;
-    }
-
-    final Properties additionalProperties() {
-        final Properties hibernateProperties = new Properties();
-        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-        hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-        hibernateProperties.setProperty("hibernate.cache.use_second_level_cache", env.getProperty("hibernate.cache.use_second_level_cache"));
-        hibernateProperties.setProperty("hibernate.cache.use_query_cache", env.getProperty("hibernate.cache.use_query_cache"));
-        // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
-        return hibernateProperties;
-    }
-    
     @Bean
     public DataSource dataSource() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -92,6 +100,14 @@ public class ApplicationContextConfig {
         dataSource.setUsername(env.getProperty("jdbc.user"));
         dataSource.setPassword(env.getProperty("jdbc.pass"));
         return dataSource;
+    }
+    // Hibernate Transaction Manager
+    @Autowired
+    @Bean(name = "transactionManager")
+    public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
+
+        return transactionManager;
     }
 
     @Bean

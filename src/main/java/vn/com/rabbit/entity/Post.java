@@ -13,18 +13,22 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import vn.com.rabbit.base.entity.BaseEntity;
+import vn.com.rabbit.base.models.annotation.ReportTableName;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "bl_post")
+@Table
+@ReportTableName(value = "Post", name = "Post")
+@NoArgsConstructor
 public class Post extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
-	private User users;
+	private Account users;
 	
 	@Column(name = "title")
 	private String title;

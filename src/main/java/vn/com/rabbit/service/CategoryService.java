@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,11 +17,13 @@ import vn.com.rabbit.repository.CategoryReposytory;
 @Service
 public class CategoryService extends BaseImplService<Category> {
 	
-	private final CategoryReposytory categoryReposytory;
+	@Autowired
+	private CategoryReposytory categoryReposytory;
+	
 	protected CategoryService(CategoryReposytory repo) {
 		super(repo);
-		this.categoryReposytory=  repo;
 	}
+	
 	
 	@Transactional
 	public Optional<Category> getOneCategoryById(HttpServletRequest request) {

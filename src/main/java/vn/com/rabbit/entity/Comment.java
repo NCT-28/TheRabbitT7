@@ -8,12 +8,16 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import vn.com.rabbit.base.entity.BaseEntity;
+import vn.com.rabbit.base.models.annotation.ReportTableName;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "bl_comment")
+@Table
+@ReportTableName(value = "Comment", name = "Comment")
+@NoArgsConstructor
 public class Comment extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
