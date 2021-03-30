@@ -12,19 +12,16 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import vn.com.rabbit.base.entity.BaseEntity;
-import vn.com.rabbit.base.models.annotation.ReportTableName;
 
 /**
  * An authority (a security role) used by Spring Security.
  */
 @Entity
 @Table
-@ReportTableName(value = "Role", name = "Role")
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Role extends BaseEntity {
+public class Role extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 

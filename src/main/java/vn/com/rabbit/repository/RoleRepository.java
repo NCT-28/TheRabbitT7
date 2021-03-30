@@ -1,18 +1,14 @@
 package vn.com.rabbit.repository;
 
 import javax.persistence.EntityManager;
-
-
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import vn.com.rabbit.base.repository.BaseImplRepository;
 import vn.com.rabbit.entity.Role;
 
-@Repository
-public class RoleRepository extends BaseImplRepository<Role> {
+import java.util.UUID;
 
-	protected RoleRepository(EntityManager e) {
-		super(Role.class, e);
-		// TODO Auto-generated constructor stub
-	}
+@Repository
+public interface RoleRepository extends JpaRepository<Role, UUID> {
+
 
 }

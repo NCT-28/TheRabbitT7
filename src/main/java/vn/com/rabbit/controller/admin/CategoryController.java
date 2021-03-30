@@ -17,20 +17,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import vn.com.rabbit.base.controller.BaseCrudImplController;
 import vn.com.rabbit.common.Helper;
 import vn.com.rabbit.entity.Category;
 import vn.com.rabbit.service.CategoryService;
 
 @Controller
 @RequestMapping(value = "/quan-tri/category")
-public class CategoryController extends BaseCrudImplController<Category> {
+public class CategoryController  {
 
 	
 	private final CategoryService categoryService;
 	
-	protected CategoryController(CategoryService service) {
-		super(service);
+	public CategoryController(CategoryService service) {
+
 		this.categoryService = service;
 	}
 
@@ -46,7 +45,7 @@ public class CategoryController extends BaseCrudImplController<Category> {
 		category.setDescription(description);
 		category.setLocked(false);
 
-		categoryService.add(category);
+		//categoryService.saveAndUpdate(category);
 		System.out.println("add or update thanh cong category thanh cong");
 		return "redirect:" + request.getHeader("Referer");
 	}
@@ -67,32 +66,10 @@ public class CategoryController extends BaseCrudImplController<Category> {
 		UUID id = UUID.fromString(request.getParameter("id"));
 		session.setAttribute("delete", name);
 
-		categoryService.delete(id);
+		//categoryService.deleteCategory(id);
 		System.out.println("xóa thành công " + request.getParameter("name"));
 
 		return "redirect:" + request.getHeader("Referer");
-	}
-
-	@Override
-	public String postAdd(HttpServletRequest request, Principal principal) throws Exception {
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		Category category = new Category();
-
-		category.setName(name);
-		category.setUrl(Helper.pathVariableString(name));
-		category.setDescription(description);
-		category.setLocked(false);
-
-		categoryService.add(category);
-		System.out.println("add or update thanh cong category thanh cong");
-		return "redirect:" + request.getHeader("Referer");
-	}
-
-	@Override
-	public String putUpdate(HttpServletRequest request, Principal principal) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

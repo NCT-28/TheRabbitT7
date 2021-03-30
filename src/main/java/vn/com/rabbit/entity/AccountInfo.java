@@ -10,16 +10,13 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import vn.com.rabbit.base.entity.BaseEntity;
-import vn.com.rabbit.base.models.annotation.ReportTableName;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table
 @NoArgsConstructor
-@ReportTableName(value = "AccountInfo", name = "AccountInfo")
-public class AccountInfo extends BaseEntity {
+public class AccountInfo extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@OneToOne(fetch = FetchType.LAZY)

@@ -13,22 +13,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import vn.com.rabbit.entity.Account;
+import vn.com.rabbit.entity.Role;
 import vn.com.rabbit.repository.AccountRepository;
-import vn.com.rabbit.repository.AccountRoleRepository;
 
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
 	@Autowired
-    private AccountRepository  accountRepository;    
-	@Autowired
-    private AccountRoleRepository accountRoleRepository;
+    private AccountRepository  accountRepository;
     
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account user = accountRepository.findByName("login", username);
+        Account user = accountRepository.findOneByLogin(username).get();
         System.out.println("UserInfo= " + user);
 
         if (user == null) {
@@ -36,13 +34,13 @@ public class MyUserDetailsService implements UserDetailsService {
         }
          
         // [USER,ADMIN,..]
-        List<String> roles= accountRoleRepository.findAllJoinTableByID(user.getUuid(), "login", String.class);
+        List<Role> roles= accountRepository.findAllRoleByUserId(username);
          
         List<GrantedAuthority> grantList= new ArrayList<GrantedAuthority>();
         if(roles!= null)  {
-            for(String role: roles)  {
+            for(Role role: roles)  {
                 // ROLE_USER, ROLE_ADMIN,..
-                GrantedAuthority authority = new SimpleGrantedAuthority(role);
+                GrantedAuthority authority = new SimpleGrantedAuthority(role.getName());
                 grantList.add(authority);
             }
         }

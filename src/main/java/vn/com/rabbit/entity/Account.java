@@ -17,16 +17,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import vn.com.rabbit.base.entity.BaseEntity;
-import vn.com.rabbit.base.models.annotation.ReportTableName;
-
 @Entity
 @Table
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@ReportTableName(value = "Account", name = "Account")
-public class Account extends BaseEntity{
+public class Account extends  AbstractEntity{
 
 	private static final long serialVersionUID = 1L;
 

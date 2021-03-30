@@ -12,16 +12,13 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import vn.com.rabbit.base.entity.BaseEntity;
-import vn.com.rabbit.base.models.annotation.ReportTableName;
 
 @Data
 @Entity
 @Table
-@ReportTableName(value = "Setting", name = "Setting")
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class Setting extends BaseEntity {
+public class Setting extends AbstractEntity {
 	/**
 	* 
 	*/

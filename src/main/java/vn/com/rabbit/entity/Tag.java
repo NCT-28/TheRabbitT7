@@ -12,16 +12,13 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import vn.com.rabbit.base.entity.BaseEntity;
-import vn.com.rabbit.base.models.annotation.ReportTableName;
 
 @Entity
 @Table
-@ReportTableName(value = "Tag", name = "ta")
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Tag extends BaseEntity {
+public class Tag extends AbstractEntity {
 	
 	private static final long serialVersionUID = 1L;
 
