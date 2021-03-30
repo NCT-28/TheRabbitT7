@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Optional;
 
-@Service
 public interface CategoryService {
 
 	void saveAndUpdate(HttpServletRequest request, Principal principal);

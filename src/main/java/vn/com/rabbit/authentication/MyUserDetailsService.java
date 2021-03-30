@@ -20,9 +20,12 @@ import vn.com.rabbit.repository.AccountRepository;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
-	@Autowired
-    private AccountRepository  accountRepository;
+	
+    private final AccountRepository  accountRepository;
     
+    public MyUserDetailsService(AccountRepository  accountRepository) {
+    	this.accountRepository = accountRepository;
+    }
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

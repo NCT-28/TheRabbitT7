@@ -1,6 +1,11 @@
 package vn.com.rabbit.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.security.Principal;
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -8,22 +13,23 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import vn.com.rabbit.common.Helper;
 import vn.com.rabbit.entity.Category;
 import vn.com.rabbit.repository.CategoryReposytory;
 import vn.com.rabbit.service.CategoryService;
 import vn.com.rabbit.service.model.ModelBase;
 
-import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
-import java.util.Optional;
-import java.util.UUID;
-
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-	@Autowired
-	private CategoryReposytory categoryRepository;
+	
+	private final CategoryReposytory categoryRepository;
+	
+	public CategoryServiceImpl(CategoryReposytory categoryRepository) {
+		// TODO Auto-generated constructor stub
+		this.categoryRepository = categoryRepository;
+	}
 
 	@Override
 	@Transactional
