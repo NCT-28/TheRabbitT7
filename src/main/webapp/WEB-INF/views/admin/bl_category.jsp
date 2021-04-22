@@ -58,12 +58,14 @@
 			</div>
 		</div>
 
+		
+
+
 		<div class="modal fade" id="themTheLoaiMoi">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<h4 class="modal-title">Thên thể loại mới</h4>
@@ -72,16 +74,12 @@
 						<h4>Nhập thông tin về thể loại Truyện</h4>
 						<div class="row">
 							<div class="col-lg-12">
-								<form
-									action="${pageContext.request.contextPath}/quan-tri/category/add-update-category"
-									method="post">
+								<form action="${pageContext.request.contextPath}/quan-tri/category/add-update-category" method="post">
 									<div class="form-group">
-										<label>Tên thể loại</label> <input class="form-control"
-											name="name" placeholder="Nhập tên thể loại">
+										<label>Tên thể loại</label> <input class="form-control" name="name" placeholder="Nhập tên thể loại">
 									</div>
 									<div class="form-group">
-										<label>Giới thiệu</label> <input class="form-control"
-											name="description" placeholder="Nhập giới thiệu về thể loại">
+										<label>Giới thiệu</label> <input class="form-control" name="description" placeholder="Nhập giới thiệu về thể loại">
 									</div>
 									<button type="submit" class="btn btn-primary">Thêm thể
 										loại</button>
@@ -91,17 +89,13 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default pull-right"
-							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
 					</div>
 				</div>
 				<!-- /.modal-content -->
 			</div>
 			<!-- /.modal-dialog -->
-		</div>
-
-
-		<!-- /.row -->
+		</div><!-- /.row -->
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="box">
@@ -157,8 +151,8 @@
 								<th>Trạng Thái</th>
 								<th></th>
 							</tr>
-							<c:set var="cate" value="${categoryModel}" />
-							<c:forEach items="${cate.value}" var="us" varStatus="status">
+							<c:set var="cate" value="${categoryMess}" />
+							<c:forEach items="${cate.values}" var="us" varStatus="status">
 								<tr>
 									<td style="width: 5%; text-align: center;"><input
 										class="checkbox all" type="checkbox" name="check[]"
@@ -195,11 +189,11 @@
 							</c:forEach>
 						</table>
 						<div class="grid_3 grid_5 agileits">
-							<c:if test="${cate.count/5 >= 1}">
+							<c:if test="${cate.total/5 >= 1}">
 								<div class="col-md-6">
 									<nav>
 										<ul class="pagination pagination-lg">
-											<c:forEach begin="0" end="${cate.count/15}" var="index">
+											<c:forEach begin="0" end="${cate.total/15}" var="index">
 												<li><a href="category?pageNo=${index +1}"
 													class="nav-item">${index +1}</a></li>
 											</c:forEach>
