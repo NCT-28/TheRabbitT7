@@ -19,7 +19,7 @@
 			<form action="${pageContext.request.contextPath}/auth/logins"
 				method="post">
 				<div class="form-group has-feedback">
-					<input type="text" name='username' class="form-control"
+					<input type="text" name="username" class="form-control"
 						placeholder="Email"> <span
 						class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
@@ -31,7 +31,7 @@
 				<div class="row">
 					<div class="col-xs-8">
 						<div class="checkbox icheck">
-							<label> <input type="checkbox"> Remember Me
+							<label> <input type="checkbox" name="remember-me"> Remember Me
 							</label>
 						</div>
 					</div>

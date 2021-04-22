@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-<title>Blog NaoT 97</title>
+<title>The Rabbit T97</title>
 </head>
 <body>
 

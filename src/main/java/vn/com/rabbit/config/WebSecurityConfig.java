@@ -1,5 +1,7 @@
 package vn.com.rabbit.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,23 +10,20 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import vn.com.rabbit.authentication.MyUserDetailsService;
-
 
 @Configuration
 @EnableWebSecurity
 @Transactional
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	
-	private final MyUserDetailsService myUserDetailsService;
-	
-	public WebSecurityConfig(MyUserDetailsService myUserDetailsService) {
-		this.myUserDetailsService= myUserDetailsService;
-	}
-	
+	@Autowired
+	private MyUserDetailsService myUserDetailsService;
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -53,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 
 		// Trang chỉ dành cho ADMIN
-		http.authorizeRequests().antMatchers("/quan-tri/*").permitAll();
+		http.authorizeRequests().antMatchers("/quan-tri/*").access("hasAnyRole('ROLE_ADMIN')");
 
 		// Khi người dùng đã login, với vai trò XX.
 		// Nhưng truy cập vào trang yêu cầu vai trò YY,
@@ -65,13 +64,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 				// Submit URL của trang login
 				.loginProcessingUrl("/auth/logins") // Submit URL
-				.loginPage("/login")
-				.defaultSuccessUrl("/quan-tri")
-				.failureUrl("/auth/login?error=true")
-				.usernameParameter("username")
-				.passwordParameter("password")
+				.loginPage("/login").defaultSuccessUrl("/quan-tri").failureUrl("/auth/login?error=true")
+				.usernameParameter("username").passwordParameter("password")
 
 				// Cấu hình cho Logout Page.
 				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/index");
+
+		// Cấu hình Remember Me.
+		http.authorizeRequests().and() //
+				.rememberMe().tokenRepository(this.persistentTokenRepository()) //
+				.tokenValiditySeconds(1 * 24 * 60 * 60); // 24h
+	}
+
+	@Autowired
+	private DataSource dataSource;
+
+	@Bean
+	public PersistentTokenRepository persistentTokenRepository() {
+		JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
+		db.setDataSource(dataSource);
+		return db;
 	}
 }

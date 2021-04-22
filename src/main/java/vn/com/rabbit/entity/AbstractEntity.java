@@ -1,4 +1,4 @@
-package vn.com.rabbit.entity;
+  package vn.com.rabbit.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

@@ -12,43 +12,31 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import vn.com.rabbit.entity.Account;
-import vn.com.rabbit.entity.Role;
-import vn.com.rabbit.repository.AccountRepository;
+import vn.com.rabbit.service.AccountService;
+import vn.com.rabbit.service.dto.AccountDto;
 
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
-
 	
-    private final AccountRepository  accountRepository;
+	@Autowired
+    private AccountService  _service;
     
-    public MyUserDetailsService(AccountRepository  accountRepository) {
-    	this.accountRepository = accountRepository;
-    }
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account user = accountRepository.findOneByLogin(username).get();
-        System.out.println("UserInfo= " + user);
-
-        if (user == null) {
-            throw new UsernameNotFoundException("User " + username + " was not found in the database");
-        }
-         
-        // [USER,ADMIN,..]
-        List<Role> roles= accountRepository.findAllRoleByUserId(username);
-         
+    	
+    	AccountDto _account = _service.getUserWithAuthoritiesByLogin(username);
+         	
         List<GrantedAuthority> grantList= new ArrayList<GrantedAuthority>();
-        if(roles!= null)  {
-            for(Role role: roles)  {
-                // ROLE_USER, ROLE_ADMIN,..
-                GrantedAuthority authority = new SimpleGrantedAuthority(role.getName());
+        
+        if(_account.getRoles() != null)  {
+            for(String role: _account.getRoles())  {            	
+                GrantedAuthority authority = new SimpleGrantedAuthority(role);
                 grantList.add(authority);
             }
         }
-        UserDetails userDetails = new User(user.getLogin(), //
-                user.getPassword(),grantList);
+        UserDetails userDetails = new User(_account.getUsername(), _account.getPassword(), grantList);
  
         return userDetails;
     }

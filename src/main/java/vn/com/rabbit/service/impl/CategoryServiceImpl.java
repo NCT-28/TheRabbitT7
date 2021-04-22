@@ -18,7 +18,9 @@ import vn.com.rabbit.common.Helper;
 import vn.com.rabbit.entity.Category;
 import vn.com.rabbit.repository.CategoryReposytory;
 import vn.com.rabbit.service.CategoryService;
-import vn.com.rabbit.service.model.ModelBase;
+import vn.com.rabbit.service.dto.CategoryDTO;
+import vn.com.rabbit.service.dto.response.ResponseMess;
+
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -33,26 +35,22 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	@Transactional
-	public void saveAndUpdate(HttpServletRequest request, Principal principal) {
+	public void saveAndUpdate(CategoryDTO dto) {
 
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		// Boolean lock = Boolean.parseBoolean(request.getParameter("locked"));
 
 		Category category = new Category();
 
-		if (request.getParameter("id") == null) {
-			category.setName(name);
-			category.setUrl(Helper.pathVariableString(name));
-			category.setDescription(description);
+		if (dto.getId() ==null) {
+			category.setName(dto.getName());
+			category.setUrl(Helper.pathVariableString(dto.getName()));
+			category.setDescription(dto.getDescription());
 			category.setLocked(false);
 			category.setCreatedBy(/* principal.getName() != null ? principal.getName() : */ "Anonymous");
 		} else {
-			UUID id = UUID.fromString(request.getParameter("id"));
-			category = categoryRepository.findById(id).get();
-			category.setName(name);
-			category.setUrl(Helper.pathVariableString(name));
-			category.setDescription(description);
+			category = categoryRepository.findById(dto.getId()).get();
+			category.setName(dto.getName());
+			category.setUrl(Helper.pathVariableString(dto.getName()));
+			category.setDescription(dto.getDescription());
 			category.setUpdatedBy(/* principal.getName() != null ? principal.getName() : */"Anonymous");
 		}
 
@@ -62,7 +60,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	@Transactional
-	public ModelBase<Category> getAllCategorys(Integer pageNo, Integer pageSize, String name, String sortType,
+	public ResponseMess<Category> getAllCategorys(Integer pageNo, Integer pageSize, String name, String sortType,
 			String sortBy) {
 
 		Pageable pageable = null;
@@ -74,10 +72,10 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 		Page<Category> enties = categoryRepository.findAllCategory(pageable, name);
 
-		ModelBase<Category> categoryMess = new ModelBase<Category>();
+		ResponseMess<Category> categoryMess = new ResponseMess<Category>();
 		categoryMess.setMessage("");
-		categoryMess.setCount(enties.getTotalElements());
-		categoryMess.setValue(enties.getContent());
+		categoryMess.setTotal(enties.getTotalElements());
+		categoryMess.setValues(enties.getContent());
 
 		return categoryMess;
 

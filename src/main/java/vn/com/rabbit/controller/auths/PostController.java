@@ -1,4 +1,4 @@
-package vn.com.rabbit.controller.admin;
+package vn.com.rabbit.controller.auths;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +10,9 @@ public class PostController {
 
 	@GetMapping("")
 	public String postPage() {
-		return "admin/post";
+		return "admin/bl_post";
 	}
+	
 	@GetMapping("/them-post")
 	public String themPostPage() {
 		return "admin/them-post";
