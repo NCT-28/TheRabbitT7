@@ -1,6 +1,7 @@
 package vn.com.rabbit.service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,5 +15,5 @@ public interface CategoryService {
 	ResponseMess<Category> getAllCategorys(Integer pageNo, Integer pageSize, String name, String sortType,
 										String sortBy);
 	Optional<Category> getOneCategoryById(HttpServletRequest request);
-	void deleteCategory(HttpServletRequest request);
+	void deleteCategory(UUID id);
 }

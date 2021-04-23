@@ -95,7 +95,7 @@ public class AccountServiceImpl implements AccountService {
 
 		Account user = new Account();
 		AccountInfo userInfo = new AccountInfo();
-
+		
 		if (accountDto.getId() == null) {
 			// New user
 			user.setLogin(accountDto.getUsername());

@@ -1,4 +1,4 @@
-package vn.com.rabbit.controller.admin;
+package vn.com.rabbit.controller.auths;
 
 import java.security.Principal;
 import java.util.Optional;
@@ -88,7 +88,7 @@ public class CategoryController {
 		UUID id = UUID.fromString(request.getParameter("id"));
 		session.setAttribute("delete", name);
 
-		// categoryService.deleteCategory(id);
+		categoryService.deleteCategory(id);
 		System.out.println("xóa thành công " + request.getParameter("name"));
 
 		return "redirect:" + request.getHeader("Referer");

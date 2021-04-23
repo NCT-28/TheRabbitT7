@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+	<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,7 @@
 <body>
 	<section class="content-header">
 		<h1>
-			Post <small>quản lý post</small>
+			Posting <small>Thêm bài viết</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="${pageContext.request.contextPath}/quan-tri"><i
@@ -52,9 +52,7 @@
 					<div class="box-body box-profile">
 
 						<form>
-							<button href="#" class="btn btn-primary btn-block">
-								<b>Xuất bản</b>
-							</button>
+							
 							<div class="form-group">
 								<label>Author</label> <input class="form-control" name="name"
 									placeholder="Nhập nội dung tiêu đề">
@@ -66,6 +64,10 @@
 							<div class="form-group">
 								<label>Featured Image</label>
 							</div>
+							
+							<button href="#" class="btn btn-primary btn-block">
+								<b>Xuất bản</b>
+							</button>
 						</form>
 
 

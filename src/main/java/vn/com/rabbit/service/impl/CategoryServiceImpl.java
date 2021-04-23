@@ -1,6 +1,5 @@
 package vn.com.rabbit.service.impl;
 
-import java.security.Principal;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -90,8 +89,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	@Transactional
-	public void deleteCategory(HttpServletRequest request) {
-		UUID id = UUID.fromString(request.getParameter("id"));
+	public void deleteCategory(UUID id) {
 		categoryRepository.deleteById(id);
 	}
 

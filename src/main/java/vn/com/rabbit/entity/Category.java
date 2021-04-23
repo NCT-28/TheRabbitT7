@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Category extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "name")
+	@Column(name = "name", columnDefinition = "nvarchar")
 	private String name;
 
 	@Column(name = "description")

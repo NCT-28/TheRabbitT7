@@ -218,14 +218,14 @@
 				<div class="panel panel-success">
 
 					<div class="panel-heading">
-						<h4>Chỉnh Sửa Thông Tin Thể Loại Truyện</h4>
+						<h4>Chỉnh Sửa Thông Tin Thể Loại</h4>
 					</div>
 					<div class="panel-body">
-						<h4>Nhập thông tin về thể loại Truyện</h4>
+						<h4>Nhập thông tin về thể loại</h4>
 						<div class="row">
 							<div class="col-lg-12">
 								<form
-									action="${pageContext.request.contextPath}/quan-tri/category/add"
+									action="${pageContext.request.contextPath}/quan-tri/category/add-update-category"
 									method="post">
 									<div class="form-group">
 										<label>ID thể loại:</label> <input class="form-control"
@@ -271,7 +271,7 @@
 				<div class="panel panel-red">
 
 					<div class="panel-heading">
-						<h3>Xóa Thể Loại Truyện</h3>
+						<h3>Xóa Thể Loại</h3>
 					</div>
 					<div class="panel-body">
 						<div class="row">
