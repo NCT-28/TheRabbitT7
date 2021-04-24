@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import vn.com.rabbit.entity.Account;
 import vn.com.rabbit.entity.Category;
 import vn.com.rabbit.entity.CategoryPost;
 import vn.com.rabbit.entity.Post;
@@ -43,7 +44,7 @@ public class PostServiceImpl implements PostService {
 	@Override
 	@Transactional
 	public void saveAndUpdate(PostDTO dto) {
-		var _post = _mapper.dtoToEntity(dto);
+		Post _post = _mapper.dtoToEntity(dto);
 		
 		
 
@@ -56,7 +57,7 @@ public class PostServiceImpl implements PostService {
 			for (UUID id : _categorys) {
 				var ca = categoryReposytory.findOneCategoryById(id);
 				if (ca != null) {
-					var categoryPost = new CategoryPost();
+					CategoryPost categoryPost = new CategoryPost();
 					categoryPost.setCategorys(ca);
 					categoryPost.setPosts(_post);
 					categoryPost.setCreatedBy("Anonymous");
@@ -68,7 +69,7 @@ public class PostServiceImpl implements PostService {
 			_post.setCategoryPosts(_categoryPosts);
 		}
 		
-		var author = accountRepository.findOneByLogin(dto.getUsers()).get();
+		Account author = accountRepository.findOneByLogin(dto.getUsers()).get();
 		
 		_post.setUsers(author);
 

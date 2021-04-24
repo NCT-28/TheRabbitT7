@@ -1,6 +1,7 @@
 package vn.com.rabbit.controller.auths;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,14 +14,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import vn.com.rabbit.common.Helper;
 import vn.com.rabbit.common.Page;
+import vn.com.rabbit.entity.Post;
 import vn.com.rabbit.service.CategoryService;
 import vn.com.rabbit.service.PostService;
 import vn.com.rabbit.service.dto.CategoryDTO;
 import vn.com.rabbit.service.dto.PostDTO;
 import vn.com.rabbit.service.dto.form.FormAddPost;
+import vn.com.rabbit.service.dto.response.ResponseMess;
 
 @Controller
 @RequestMapping(value = "/quan-tri/post")
@@ -39,7 +43,7 @@ public class PostController {
 			@RequestParam(defaultValue = "1") Integer pageNo, @RequestParam(defaultValue = "15") Integer pageSize,
 			@RequestParam(defaultValue = "DESC") String sortType, @RequestParam(defaultValue = "title") String sortBy,
 			HttpSession session) {
-		var postMess = _server.getAllPosts(pageNo, pageSize, name, sortType, sortBy);
+		ResponseMess<Post> postMess = _server.getAllPosts(pageNo, pageSize, name, sortType, sortBy);
 		model.addAttribute("postMess", postMess);
 
 		return Page.Post;
@@ -61,14 +65,14 @@ public class PostController {
 			@ModelAttribute("formAddPost") @Validated FormAddPost formAddPost, HttpSession session) {
 
 		// Get data.
-		var title = formAddPost.getTitle();
-		var content = formAddPost.getContent();
-		var author = "admin";
-		var categorys = formAddPost.getCategory();
-		var image = formAddPost.getFeaturedImage();
+		String title = formAddPost.getTitle();
+		String content = formAddPost.getContent();
+		String author = "admin";
+		UUID[] categorys = formAddPost.getCategory();
+		CommonsMultipartFile image = formAddPost.getFeaturedImage();
 
 		// create post new.
-		var post = new PostDTO();
+		PostDTO post = new PostDTO();
 		post.setId(null);
 		post.setTitle(title);
 		post.setUsers(author);
