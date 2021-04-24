@@ -94,7 +94,7 @@ public class PostController {
 
 	@ModelAttribute("category")
 	public List<CategoryDTO> getCategory() {
-		var category = categoryService.getAll();
+		List<CategoryDTO> category = categoryService.getAll();
 		return category;
 	}
 }

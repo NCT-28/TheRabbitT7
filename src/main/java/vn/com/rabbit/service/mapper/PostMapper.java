@@ -18,7 +18,7 @@ public class PostMapper extends BaseMapper<Post, PostDTO> {
 	@Override
 	public Post dtoToEntity(PostDTO dto) {
 		if(dto != null) {
-			var post = new Post();
+			Post post = new Post();
 			
 			
 			post.setTitle(dto.getTitle());
