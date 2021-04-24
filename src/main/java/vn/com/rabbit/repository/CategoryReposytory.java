@@ -18,5 +18,5 @@ public interface CategoryReposytory extends JpaRepository<Category, UUID> {
 	Page<Category> findAllCategory(Pageable pageable, @Param("name") String name);
 
 	@Query(" SELECT ca FROM Category ca WHERE ca.id = :id ")
-	Category findOneCategoryById(@Param("id") Long id);
+	Category findOneCategoryById(@Param("id") UUID id);
 }

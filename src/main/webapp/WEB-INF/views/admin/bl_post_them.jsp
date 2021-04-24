@@ -1,5 +1,9 @@
-	<%@ page language="java" contentType="text/html; charset=utf-8"
+
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+
+<%@ include file="/common/taglib.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,60 +26,72 @@
 	<section class="content">
 		<div class="row">
 
-			<div class="col-md-9">
-				<div class="box box-info">
-					<div class="box-header">
-						<h3 class="box-title">Thêm nội dung</h3>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body pad">
-						<form>
+			<form:form modelAttribute="formAddPost" enctype="multipart/form-data"
+				action="${pageContext.request.contextPath}/quan-tri/post/them-post/insert"
+				method="POST">
+
+				<div class="col-md-9">
+					<div class="box box-info">
+						<div class="box-header">
+							<h3 class="box-title">Thêm nội dung</h3>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body pad">
+
 							<div class="form-group">
-								<label>Tiêu đề</label> <input class="form-control" name="name"
-									placeholder="Nhập nội dung tiêu đề">
+								<label>Tiêu đề</label>
+								<form:input path="title" class="form-control"
+									placeholder="Nhập nội dung tiêu đề" id="title" />
 							</div>
 							<div class="form-group">
 								<label>Nội dung</label>
 							</div>
-							<textarea id="editor1" name="editor1" rows="10" cols="80">
-                                            
-                    		</textarea>
-						</form>
+							<form:textarea path="content" id="content" name="editor1"
+								rows="10" cols="80" />
+
+
+						</div>
 					</div>
+					<!-- /.box -->
 				</div>
-				<!-- /.box -->
-			</div>
-			<div class="col-md-3">
+				<div class="col-md-3">
 
-				<!-- Profile Image -->
-				<div class="box box-primary">
-					<div class="box-body box-profile">
+					<!-- Profile Image -->
+					<div class="box box-primary">
+						<div class="box-body box-profile">
 
-						<form>
-							
+
+
 							<div class="form-group">
-								<label>Author</label> <input class="form-control" name="name"
-									placeholder="Nhập nội dung tiêu đề">
+								<label>Author</label> 
+								<form:input path="author" class="form-control" name="author" readonly ="true"
+									placeholder="${author}" />
 							</div>
+							
+
 							<div class="form-group">
-								<label>Category</label> <input class="form-control" name="name"
-									placeholder="Nhập nội dung tiêu đề">
+								<label>Category</label>
+								
+								<form:select multiple="true" path="category"
+											class="form-control select2">
+											<form:options items="${category}" itemLabel="name"
+												itemValue="id" />
+										</form:select>
+								
 							</div>
 							<div class="form-group">
 								<label>Featured Image</label>
+								<form:input path="featuredImage" type="file" />
 							</div>
-							
-							<button href="#" class="btn btn-primary btn-block">
-								<b>Xuất bản</b>
-							</button>
-						</form>
+							<button type="submit" class="btn btn-primary btn-block">Xuất bản</button>
 
-
+						</div>
+						<!-- /.box-body -->
 					</div>
-					<!-- /.box-body -->
+					<!-- /.box -->
 				</div>
-				<!-- /.box -->
-			</div>
+			</form:form>
+
 		</div>
 		<!-- ./row -->
 	</section>
@@ -88,7 +104,7 @@
 		$(function() {
 			// Replace the <textarea id="editor1"> with a CKEditor
 			// instance, using default configuration.
-			CKEDITOR.replace('editor1')
+			CKEDITOR.replace('content')
 			//bootstrap WYSIHTML5 - text editor
 			$('.textarea').wysihtml5()
 		})

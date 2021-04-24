@@ -110,7 +110,8 @@
 										</div>
 									</div>									
 									<div class="form-group">
-										<label>Quyền</label> <select class="form-control select2"
+										<label>Quyền</label> 
+										<select class="form-control select2"
 											multiple="multiple" data-placeholder="Select a State"
 											style="width: 100%;" name = "roles">
 											<option>Alabama</option>

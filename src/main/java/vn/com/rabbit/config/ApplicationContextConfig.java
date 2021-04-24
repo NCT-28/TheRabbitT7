@@ -5,7 +5,6 @@ import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,13 +14,13 @@ import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
@@ -45,14 +44,14 @@ public class ApplicationContextConfig {
 	/** 
 	 * Config Specifies the file size up
 	 */
-//	@Bean(name = "multipartResolver")
-//	public MultipartResolver getMultipartResolver() {
-//		CommonsMultipartResolver resover = new CommonsMultipartResolver();
-//		// 1MB
-//		resover.setMaxUploadSize(1 * 1024 * 1024);
-//
-//		return resover;
-//	}
+	@Bean(name = "multipartResolver")
+	public MultipartResolver getMultipartResolver() {
+		CommonsMultipartResolver resover = new CommonsMultipartResolver();
+		// 10 MB
+		resover.setMaxUploadSize(10 * 1024 * 1024);
+
+		return resover;
+	}
 	
 	/**
 	 * Config data base.

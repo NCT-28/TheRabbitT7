@@ -1,5 +1,6 @@
 package vn.com.rabbit.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -19,6 +20,7 @@ import vn.com.rabbit.repository.CategoryReposytory;
 import vn.com.rabbit.service.CategoryService;
 import vn.com.rabbit.service.dto.CategoryDTO;
 import vn.com.rabbit.service.dto.response.ResponseMess;
+import vn.com.rabbit.service.mapper.CategoryMapper;
 
 
 @Service
@@ -26,11 +28,21 @@ public class CategoryServiceImpl implements CategoryService {
 
 	
 	private final CategoryReposytory categoryRepository;
+	private final CategoryMapper _mapper;
 	
-	public CategoryServiceImpl(CategoryReposytory categoryRepository) {
+	public CategoryServiceImpl(CategoryReposytory categoryRepository, CategoryMapper mapper) {
 		// TODO Auto-generated constructor stub
 		this.categoryRepository = categoryRepository;
+		this._mapper = mapper;
 	}
+	
+	@Override
+	@Transactional
+	public List<CategoryDTO> getAll() {
+		var _items= categoryRepository.findAll();
+		return _mapper.categorysToCategoryDTOS(_items);
+	}
+
 
 	@Override
 	@Transactional
@@ -93,4 +105,5 @@ public class CategoryServiceImpl implements CategoryService {
 		categoryRepository.deleteById(id);
 	}
 
+	
 }

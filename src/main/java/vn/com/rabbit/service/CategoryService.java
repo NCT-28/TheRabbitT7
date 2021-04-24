@@ -1,5 +1,6 @@
 package vn.com.rabbit.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -11,6 +12,8 @@ import vn.com.rabbit.service.dto.response.ResponseMess;
 
 public interface CategoryService {
 
+	List<CategoryDTO> getAll();
+	
 	void saveAndUpdate(CategoryDTO dto);
 	ResponseMess<Category> getAllCategorys(Integer pageNo, Integer pageSize, String name, String sortType,
 										String sortBy);
