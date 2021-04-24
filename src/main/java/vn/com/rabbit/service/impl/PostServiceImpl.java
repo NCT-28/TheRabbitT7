@@ -1,6 +1,7 @@
 package vn.com.rabbit.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -50,12 +51,12 @@ public class PostServiceImpl implements PostService {
 
 		_post.setCreatedBy("Anonymous");
 		
-		var _categorys = dto.getCategory();
+		UUID[] _categorys = dto.getCategory();
 
 		if (_categorys != null) {
-			var _categoryPosts = new ArrayList<CategoryPost>();
+			List<CategoryPost> _categoryPosts = new ArrayList<CategoryPost>();
 			for (UUID id : _categorys) {
-				var ca = categoryReposytory.findOneCategoryById(id);
+				Category ca = categoryReposytory.findOneCategoryById(id);
 				if (ca != null) {
 					CategoryPost categoryPost = new CategoryPost();
 					categoryPost.setCategorys(ca);

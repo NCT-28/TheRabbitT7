@@ -39,7 +39,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	@Transactional
 	public List<CategoryDTO> getAll() {
-		var _items= categoryRepository.findAll();
+		List<Category> _items= categoryRepository.findAll();
 		return _mapper.categorysToCategoryDTOS(_items);
 	}
 
