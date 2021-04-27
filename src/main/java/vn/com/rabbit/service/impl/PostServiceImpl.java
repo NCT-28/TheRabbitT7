@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
@@ -105,6 +104,16 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public void delete(UUID id) {
 		_repository.deleteById(id);
+	}
+
+	@Override
+	public PostDTO getOnePostByUrl(String url) {
+		Post post = _repository.findOneByUrl(url).get();
+		
+		if(post != null)
+			return _mapper.entityToDTO(post);
+			
+		return null;
 	}
 
 }

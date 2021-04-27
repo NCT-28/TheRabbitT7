@@ -1,10 +1,7 @@
 package vn.com.rabbit.service.impl;
 
-import java.security.Principal;
 import java.util.Optional;
 import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

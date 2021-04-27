@@ -15,6 +15,8 @@ public interface PostService {
 			String sortBy);
 
 	Optional<Post> getOnePostById(UUID id);
+	
+	PostDTO getOnePostByUrl(String url);
 
 	void delete(UUID id);
 }

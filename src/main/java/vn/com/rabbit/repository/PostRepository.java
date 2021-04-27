@@ -1,5 +1,6 @@
 package vn.com.rabbit.repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
@@ -17,4 +18,7 @@ public interface PostRepository extends JpaRepository<Post,UUID> {
 
 	@Query(" SELECT ps FROM Post ps WHERE ps.title LIKE %:title% ")
 	Page<Post> findAllPost(Pageable pageable, @Param("title") String title);
+	
+	@Query(" SELECT ps FROM Post ps WHERE ps.url = :url ")
+	Optional<Post> findOneByUrl(@Param("url") String url);
 }

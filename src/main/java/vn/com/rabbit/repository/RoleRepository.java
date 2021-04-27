@@ -11,13 +11,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import vn.com.rabbit.entity.Post;
 import vn.com.rabbit.entity.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, UUID> {
-	
-	
 
 	@Query(" SELECT r FROM Role r WHERE r.name LIKE %:name% ")
 	Page<Role> findAllRole(Pageable pageable, @Param("name") String name);

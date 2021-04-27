@@ -33,7 +33,7 @@ public class Post extends AbstractEntity {
 	@Column(name = "summary")
 	private String sunmary;
 
-	@Column(name = "content")
+	@Column(name = "content", columnDefinition="TEXT")
 	private String content;
 
 	@Column(name = "url")
