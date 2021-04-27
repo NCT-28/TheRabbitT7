@@ -9,9 +9,7 @@ import vn.com.rabbit.entity.Post;
 @Getter
 @Setter
 public class PostDTO extends BaseAuditDTO {
-	
-	private UUID id;
-	
+		
 	private String users;
 
 	private String title;
@@ -35,7 +33,7 @@ public class PostDTO extends BaseAuditDTO {
 	}
 	
 	public PostDTO(Post post) {
-		this.id = post.getId();
+		this.setId(post.getId());
 		this.title = post.getTitle();
 		this.sunmary = post.getSunmary();
 		this.content = post.getContent();

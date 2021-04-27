@@ -84,9 +84,9 @@
 										id="disable_select_all" style="display: none;">Hủy</button>
 								</th>
 								<th>STT</th>
-								<th>Tên Thể Loại</th>
+								<th>Title</th>
 								<th>URL</th>
-								<th>Số lượng bài viết</th>
+								
 								<th>Trạng Thái</th>
 								<th></th>
 							</tr>
@@ -99,29 +99,24 @@
 									<td>${status.index + 1}</td>
 									<td>${us.title}</td>
 									<td>/${us.url}</td>
-									<td>
-										<%-- <c:forEach
-												items="${slTruyen}" var="sl">
-												<c:if test="${sl.key==us.id }">
-													${sl.value }
-												</c:if>
-											</c:forEach> --%>
-									</td>
 									<td><c:if test="${us.locked == true}">
 											<span class="label label-warning">Disable</span>
 										</c:if> <c:if test="${us.locked == false}">
 											<span class="label label-success">Enable</span>
 										</c:if></td>
-									<td style="width: 15%; padding-top: 1%;"><a
-										class="btn btn-primary btn-sm" title="Tất cả Truyện"
-										href="${pageContext.request.contextPath}/quan-tri/abcd?id=${us.id}">
-											<i class="fa fa-list-ul"></i>
-									</a> <a data-toggle="modal" data-target="#formSuaTheLoai"
+									<td style="width: 15%; padding-top: 1%;">
+									<a
+										class="btn btn-primary btn-sm" title="Xem trước"
+										href="${pageContext.request.contextPath}/quan-tri/post/view/${us.url}">
+											<i class="fa fa-eye"></i>
+									</a> 
+									<a data-toggle="modal" data-target="#formSuaTheLoai"
 										class="btn btn-success btn-sm cap-nhat-the-loai"
-										title="Chỉnh sửa thể loại" id="${us.id }"> <i
+										title="Chỉnh sửa" id="${us.id }"> <i
 											class="fa  fa-edit"></i>
-									</a> <a class="btn btn-danger btn-sm xoa-the-loai"
-										title="Xóa thể loại" id="${us.id }" data-toggle="modal"
+									</a>
+									<a class="btn btn-danger btn-sm xoa-the-loai"
+										title="Xóa" id="${us.id }" data-toggle="modal"
 										data-target="#formXoaTheLoai"> <i class="fa fa-close"></i>
 									</a></td>
 								</tr>

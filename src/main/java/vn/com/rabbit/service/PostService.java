@@ -3,9 +3,6 @@ package vn.com.rabbit.service;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
-
-import vn.com.rabbit.entity.Category;
 import vn.com.rabbit.entity.Post;
 import vn.com.rabbit.service.dto.PostDTO;
 import vn.com.rabbit.service.dto.response.ResponseMess;
@@ -17,7 +14,7 @@ public interface PostService {
 	ResponseMess<Post> getAllPosts(Integer pageNo, Integer pageSize, String name, String sortType,
 			String sortBy);
 
-	Optional<Category> getOnePostById(HttpServletRequest request);
+	Optional<Post> getOnePostById(UUID id);
 
 	void delete(UUID id);
 }

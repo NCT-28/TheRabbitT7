@@ -194,8 +194,8 @@
 								<th>Trạng Thái</th>
 								<th>Thao tác</th>
 							</tr>
-							<c:set var="models" value="${users}" />
-							<c:forEach items="${models.value}" var="model" varStatus="status">
+							<c:set var="models" value="${accountMess}" />
+							<c:forEach items="${models.values}" var="model" varStatus="status">
 								<tr>
 									<td style="width: 5%; text-align: center;"><input
 										class="checkbox all" type="checkbox" name="check[]"
@@ -225,11 +225,11 @@
 							</c:forEach>
 						</table>
 						<div class="grid_3 grid_5 agileits">
-							<c:if test="${models.count/5 >= 1}">
+							<c:if test="${models.total/5 >= 1}">
 								<div class="col-md-6">
 									<nav>
 										<ul class="pagination pagination-lg">
-											<c:forEach begin="0" end="${models.count/15}" var="index">
+											<c:forEach begin="0" end="${models.total/15}" var="index">
 												<li><a href="category?pageNo=${index +1}"
 													class="nav-item">${index +1}</a></li>
 											</c:forEach>

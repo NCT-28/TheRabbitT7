@@ -64,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 				// Submit URL của trang login
 				.loginProcessingUrl("/auth/logins") // Submit URL
-				.loginPage("/login").defaultSuccessUrl("/quan-tri").failureUrl("/auth/login?error=true")
+				.loginPage("/auth/login").defaultSuccessUrl("/quan-tri").failureUrl("/auth/login?error=true")
 				.usernameParameter("username").passwordParameter("password")
 
 				// Cấu hình cho Logout Page.

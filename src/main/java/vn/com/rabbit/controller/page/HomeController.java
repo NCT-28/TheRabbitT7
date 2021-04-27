@@ -47,10 +47,7 @@ public class HomeController {
 	}
 	
 	
-	@GetMapping(value = { "/quan-tri/tai-khoan/role" })
-	public String taiKhoan_RolePage() {
-		return Page.Role;
-	}
+	
 
 	@GetMapping(value = { "/quan-tri/tai-khoan/menu" })
 	public String taiKhoan_MenuPage() {

@@ -1,9 +1,9 @@
 package vn.com.rabbit.service;
 
-import org.springframework.stereotype.Service;
+import vn.com.rabbit.entity.Role;
+import vn.com.rabbit.service.bases.BaseService;
+import vn.com.rabbit.service.dto.RoleDTO;
 
-
-public interface RoleService {
-
+public interface RoleService extends BaseService<Role, RoleDTO>  {
 
 }

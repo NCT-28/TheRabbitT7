@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-meta charset="utf-8">
-<title>Quản trị - Tài Khoản</title>
+<meta charset="utf-8">
+<title>Quản trị - Role</title>
 <style>
 .example-modal .modal {
 	position: relative;
@@ -26,13 +26,13 @@ meta charset="utf-8">
 <!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Tài Khoản <small>Quản lý tài khoản hệ thống</small>
+			Tài Khoản <small>Quản lý role</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="${pageContext.request.contextPath}/quan-tri"><i
 					class="fa fa-dashboard"></i> Home</a></li>
 			<li><a href="#">Quản lý</a></li>
-			<li class="active">User</li>
+			<li class="active">Role</li>
 		</ol>
 	</section>
 	<!-- Main content -->
@@ -70,10 +70,10 @@ meta charset="utf-8">
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title">Thên tài khoản</h4>
+						<h4 class="modal-title">Thên Role</h4>
 					</div>
 					<div class="modal-body">
-						<h4>Nhập thông tin về tài khoản</h4>
+						<h4>Nhập thông tin về Role</h4>
 						<div class="row">
 							<div class="col-lg-12">
 								<form
@@ -146,7 +146,8 @@ meta charset="utf-8">
 							<form
 								action="${pageContext.request.contextPath}/quan-tri/category"
 								method="Post">
-								<input type="hidden" name="array_id" value=""> <select
+								<input type="hidden" name="array_id" value=""> 
+								<select
 									id="select-tacvu" class="form-control" disabled>
 									<option value="">Tùy chọn</option>
 									<option value="enable">Kích hoạt</option>
@@ -187,47 +188,37 @@ meta charset="utf-8">
 										id="disable_select_all" style="display: none;">Hủy</button>
 								</th>
 								<th>STT</th>
-								<th>Tài khoản</th>
-								<th>URL</th>
-								<th>Trạng Thái</th>
+								<th>Role</th>
 								<th>Thao tác</th>
 							</tr>
-							<c:set var="models" value="${users}" />
-							<c:forEach items="${models.value}" var="model" varStatus="status">
+							<c:set var="models" value="${roleMess}" />
+							<c:forEach items="${models.values}" var="model" varStatus="status">
 								<tr>
 									<td style="width: 5%; text-align: center;"><input
 										class="checkbox all" type="checkbox" name="check[]"
 										id="${model.id }"></td>
 									<td>${status.index + 1}</td>
-									<td>${model.login}</td>
-									<td>/${model.url}</td>
-
-									<td><c:if test="${mo.locked == true}">
-											<span class="label label-warning">Disable</span>
-										</c:if> <c:if test="${us.locked == false}">
-											<span class="label label-success">Enable</span>
-										</c:if></td>
-									<td style="width: 15%; padding-top: 1%;"><a
-										class="btn btn-primary btn-sm" title="Tất cả Truyện"
-										href="${pageContext.request.contextPath}/quan-tri/abcd?id=${model.id}">
-											<i class="fa fa-list-ul"></i>
-									</a> <a data-toggle="modal" data-target="#edit-form"
-										class="btn btn-success btn-sm cap-nhat-the-loai"
-										title="Chỉnh sửa thể loại" id="${model.id }"> <i
-											class="fa  fa-edit"></i>
-									</a> <a class="btn btn-danger btn-sm xoa-the-loai"
-										title="Xóa thể loại" id="${model.id }" data-toggle="modal"
-										data-target="#delete-form"> <i class="fa fa-close"></i>
-									</a></td>
+									<td>${model.name}</td>
+									<td style="width: 15%; padding-top: 1%;">
+										<a data-toggle="modal" data-target="#edit-form"
+											class="btn btn-success btn-sm cap-nhat-the-loai"
+											title="Chỉnh sửa thể loại" id="${model.id }"> <i
+												class="fa  fa-edit"></i>
+										</a> 
+										<a class="btn btn-danger btn-sm xoa-the-loai"
+											title="Xóa thể loại" id="${model.id }" data-toggle="modal"
+											data-target="#delete-form"> <i class="fa fa-close"></i>
+										</a>
+									</td>
 								</tr>
 							</c:forEach>
 						</table>
 						<div class="grid_3 grid_5 agileits">
-							<c:if test="${models.count/5 >= 1}">
+							<c:if test="${models.total/5 >= 1}">
 								<div class="col-md-6">
 									<nav>
 										<ul class="pagination pagination-lg">
-											<c:forEach begin="0" end="${models.count/15}" var="index">
+											<c:forEach begin="0" end="${models.total/15}" var="index">
 												<li><a href="category?pageNo=${index +1}"
 													class="nav-item">${index +1}</a></li>
 											</c:forEach>

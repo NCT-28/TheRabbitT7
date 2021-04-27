@@ -13,16 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import vn.com.rabbit.common.Page;
+import vn.com.rabbit.entity.Account;
 import vn.com.rabbit.service.AccountService;
+import vn.com.rabbit.service.dto.response.ResponseMess;
 
 @Controller
 @RequestMapping("/quan-tri/tai-khoan")
-public class TaiKhoanController {
+public class AccountController {
 
-	private final AccountService userService;
-	public TaiKhoanController(AccountService userService) {
+	private final AccountService _service;
+	
+	public AccountController(AccountService userService) {
 
-		this.userService = userService;
+		this._service = userService;
 	}
 
 	@GetMapping(value = "")
@@ -31,17 +34,18 @@ public class TaiKhoanController {
 			@RequestParam(defaultValue = "1") Integer pageNo,
 			@RequestParam(defaultValue = "15") Integer pageSize,
 			@RequestParam(defaultValue = "DESC") String sortType,
-			@RequestParam(defaultValue = "name") String sortBy,
+			@RequestParam(defaultValue = "login") String sortBy,
 			HttpSession session) {
-	//	ResponseMess<Category> categoryMess = categoryService.getAllCategorys(pageNo, pageSize, name, sortType, sortBy);
-		//model.addAttribute("categoryMess", categoryMess);
+		
+		ResponseMess<Account> accountMess = _service.getAllUser(pageNo, pageSize, name, sortType, sortBy);
+		model.addAttribute("accountMess", accountMess);
 		
 		return Page.Account;
 	}
 	
 	@PostMapping(value = "/add-update")
 	public String saveAndUpdate(HttpServletRequest request, Principal principal) {
-		userService.saveAndUpdate(request, principal);
+		_service.saveAndUpdate(request, principal);
 		System.out.println("add or update thanh cong category thanh cong");
 		return "redirect:" + request.getHeader("Referer");
 	}

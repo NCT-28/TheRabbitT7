@@ -1,26 +1,25 @@
 package vn.com.rabbit.controller.publics;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import vn.com.rabbit.common.Path;
-import vn.com.rabbit.service.AccountService;
-import vn.com.rabbit.service.dto.AccountDto;
-
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import vn.com.rabbit.common.Path;
+import vn.com.rabbit.service.AccountService;
+import vn.com.rabbit.service.dto.AccountDto;
+
 @Controller
 @RequestMapping(Path.Public)
-public class AccountController {
+public class AccountPublicController {
 
     private final AccountService userService;
-    public  AccountController(AccountService service){
+    public  AccountPublicController(AccountService service){
         this.userService = service;
     }
 

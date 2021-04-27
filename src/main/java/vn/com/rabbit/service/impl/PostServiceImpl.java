@@ -45,9 +45,8 @@ public class PostServiceImpl implements PostService {
 	@Override
 	@Transactional
 	public void saveAndUpdate(PostDTO dto) {
+		
 		Post _post = _mapper.dtoToEntity(dto);
-		
-		
 
 		_post.setCreatedBy("Anonymous");
 		
@@ -98,15 +97,14 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Optional<Category> getOnePostById(HttpServletRequest request) {
+	public Optional<Post> getOnePostById(UUID id) {
 		// TODO Auto-generated method stub
-		return null;
+		return _repository.findById(id);
 	}
 
 	@Override
 	public void delete(UUID id) {
-		// TODO Auto-generated method stub
-		
+		_repository.deleteById(id);
 	}
 
 }
