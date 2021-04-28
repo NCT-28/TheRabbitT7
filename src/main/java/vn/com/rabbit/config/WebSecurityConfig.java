@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.social.security.SpringSocialConfigurer;
 import org.springframework.transaction.annotation.Transactional;
 
 import vn.com.rabbit.authentication.MyUserDetailsService;
@@ -74,6 +75,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().and() //
 				.rememberMe().tokenRepository(this.persistentTokenRepository()) //
 				.tokenValiditySeconds(1 * 24 * 60 * 60); // 24h
+		
+		// Spring Social Config.
+	       http.apply(new SpringSocialConfigurer())
+	               //
+	               .signupUrl("/signup");
 	}
 
 	@Autowired

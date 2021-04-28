@@ -20,4 +20,10 @@ public interface AccountRepository extends JpaRepository<Account,UUID> {
 
 	@Query(" SELECT us FROM Account us WHERE us.login LIKE %:login% ")
 	Page<Account> findAllAccount(Pageable pageable, @Param("login") String login);
+	
+	@Query(" SELECT us FROM Account us WHERE us.email = :email ")
+	Account findByEmail(@Param("email") String email);	
+	
+	@Query(" SELECT us FROM Account us WHERE us.login = :login ")
+	Account findByUserName(@Param("login") String login);
 }

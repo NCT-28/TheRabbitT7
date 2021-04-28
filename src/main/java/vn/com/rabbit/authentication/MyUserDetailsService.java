@@ -10,10 +10,13 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.social.security.SocialUserDetails;
 import org.springframework.stereotype.Service;
 
 import vn.com.rabbit.service.AccountService;
 import vn.com.rabbit.service.dto.AccountDto;
+import vn.com.rabbit.service.mapper.AccountMapper;
+import vn.com.rabbit.service.user.MySocialUserDetails;
 
 
 @Service
@@ -21,6 +24,9 @@ public class MyUserDetailsService implements UserDetailsService {
 	
 	@Autowired
     private AccountService  _service;
+	
+	@Autowired
+	private AccountMapper  _mapper;
     
     
     @Override
@@ -36,9 +42,10 @@ public class MyUserDetailsService implements UserDetailsService {
                 grantList.add(authority);
             }
         }
-        UserDetails userDetails = new User(_account.getUsername(), _account.getPassword(), grantList);
+        // Chú ý: SocialUserDetails mở rộng từ interface UserDetails.
+        SocialUserDetails principal = new MySocialUserDetails(_mapper.dtoToEntity(_account));
  
-        return userDetails;
+        return principal;
     }
      
 }
