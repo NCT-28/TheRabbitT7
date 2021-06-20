@@ -23,4 +23,5 @@ public class Page {
 	public  final  String Menu= PathRoot +"/tk_menu";
 	public  final  String Role= PathRoot +"/tk_role";
 	public  final  String Account= PathRoot +"/tk_taikhoan";
+	//Theem
 }
